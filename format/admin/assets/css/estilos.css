@@ -1,0 +1,42 @@
+.nav-container{
+    background-color: black;
+}
+
+.menu{
+    background-color: #E74F11;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+.horizontal-container{
+    background-color: #E74F11;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titulo{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+.texto{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tarjeta{
+    background-color: #E74F11;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer{
+    background-color: #000000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: white;
+}
+
+.footerBox .card-title{
+    font-size:26px;
+}
+
+.footerBox p{
+    font-size:16px;
+}
