@@ -8,7 +8,7 @@ include("assets/includes/nav.inc.php");
     <img src="assets/images/e-commerce.jpg" style="object-fit: cover; width: 100%; height: 600px;">
     <h4>acá van botones y texto para contacto</h4>
 </section>
-
+//agregar 
 <?php
 include("assets/includes/footer.inc.php");
 
