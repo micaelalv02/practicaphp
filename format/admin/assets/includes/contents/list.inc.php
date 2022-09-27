@@ -5,6 +5,7 @@ if(isset($_GET['delete'])){
     $contents->delete($_GET['delete']);
 }
 $contentsList = $contents->list();
+
 ?>
 
 <h2 class="mt-4">Listar los contenidos del Sistema</h2>
@@ -15,7 +16,7 @@ $contentsList = $contents->list();
         <th>Ajustes</th>
     </thead>
     <tbody>
-        <?php foreach ($contentsList as $contentItem) { var_dump($contentItem)?>
+        <?php foreach ($contentsList as $contentItem) { ?>
 
             <tr>
                 <td>Titulo: <?= $contentItem["title"] ?> - ID: <?= $contentItem['id'] ?></td>

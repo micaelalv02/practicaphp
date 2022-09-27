@@ -1,18 +1,31 @@
 <?php
 include("../classes/contents.php");
+include("../classes/images.php");
 $contents = new Classes\Contents();
+$imagenes = new Classes\Images();
 
 $error = '';
 
 if (isset($_POST) && !empty($_POST)) {
     foreach ($_POST as $key => $value) {
-        if(empty($value)){
-        $error .= "<li>El campo " . $key . " no puede estar vacío.</li>";
-    }}
-    if (empty($error)) { 
-        var_dump($contents->create($_POST));
+        if (empty($value)) {
+            $error .= "<li>El campo " . $key . " no puede estar vacío.</li>";
+        }
     }
-    header("Location: index.php?class=contents&action=list");
+    if (empty($error)) {
+        if ($contents->create($_POST)) {
+            $tmpName = $_FILES['image']['tmp_name'];
+            $finalPath = dirname(__DIR__, 2) . "/archivos/" . $_FILES['image']['name'];
+            $cod=$_POST['cod'];
+            if(!empty($_FILES['image']['name'])){
+                if (rename($tmpName, $finalPath)) {
+                    $imagenes->create($finalPath,$cod);
+                }
+            }
+        }
+    }
+
+    //header("Location: index.php?class=contents&action=list");
 }
 
 ?>
@@ -20,10 +33,14 @@ if (isset($_POST) && !empty($_POST)) {
 
 <h2 class="mt-4">Crear un nuevo contenido</h2>
 
-<form action="index.php?class=contents&action=create" method="POST">
-    
+<form enctype='multipart/form-data' action="index.php?class=contents&action=create" method="POST">
+
     <?= $error  ?>
-    
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Cod</label>
+        <input type="number" name="cod" id="cod" value="<?= rand(999,999999) ?>">
+    </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Titulo</label>
         <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Inserte el título.">
@@ -35,14 +52,19 @@ if (isset($_POST) && !empty($_POST)) {
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Keywords</label>
         <input type="text" name="keywords" class="form-control" id="exampleFormControlInput1" placeholder="Inserte una keyword.">
-    </div>    
+    </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Descripcion</label>
         <input type="text" name="description" class="form-control" id="exampleFormControlInput1" placeholder="Inserte una descripción.">
-    </div>    
+    </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Categoria</label>
         <input type="text" name="category" class="form-control" id="exampleFormControlInput1" placeholder="Inserte una categoría.">
     </div>
-    <div><input type="submit" value="Crear contenido" ></div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Imagen</label>
+        <input type="file" accept="image" name="image" class="form-control" id="image" placeholder="Inserte una imagen.">
+    </div>
+
+    <div><input type="submit" value="Crear contenido"></div>
 </form>

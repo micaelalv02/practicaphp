@@ -11,7 +11,7 @@ if (!empty($_POST)) {
     //actualizar registros en PDO
     var_dump($contents->update($_POST,$id));
     //die;
-    header("Location: http://localhost/Practica2/format/admin/index.php?class=contents&action=list");
+    header("Location: http://server.com/pil/mica/format/admin/index.php?class=contents&action=list");
 }
 $item=$contents->getById($id);
 
@@ -19,7 +19,7 @@ $item=$contents->getById($id);
 
 <h2 class="mt-4">Actualizar el contenido n° <?= $id ?></h2>
 
-<form action="http://localhost/Practica2/format/admin/index.php?class=contents&action=update&id=<?= $id ?> "method="POST">
+<form action="http://server.com/pil/mica/format/admin/index.php?class=contents&action=update&id=<?= $id ?> "method="POST">
     <?= $error  ?>
 
 
@@ -46,5 +46,11 @@ $item=$contents->getById($id);
         <label for="exampleFormControlInput1" class="form-label">Categoria</label>
         <input type="text" class="form-control" name="category" id="exampleFormControlInput1" value="<?= $item['category'] ?>" placeholder="Insert text here">
     </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Imagen</label>
+        <input type="file" name="image" class="form-control" id="image" placeholder="Inserte una imagen.">
+    </div>
+
     <div><input type="submit" value="Actualizar contenido"></div>
 </form>

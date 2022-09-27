@@ -14,9 +14,9 @@ class Contents{
 
     }
 
-    public function create($item){
-        var_dump($item);       
-        $query=$this->dbh->connect()->prepare("INSERT INTO contents (`title`, `content`, `keywords`, `description`, `category`) VALUES (:title,:content,:keywords,:description,:category)");
+    public function create($item){      
+
+$query=$this->dbh->connect()->prepare("INSERT INTO mica.contents (`title`, `content`, `keywords`, `description`, `category`,`cod`) VALUES (:title,:content,:keywords,:description,:category,:cod)");
         try{
             $query->execute([
                 'title'=>$item['title'],
@@ -24,6 +24,8 @@ class Contents{
                 'keywords'=>$item['keywords'],
                 'description'=>$item['description'],
                 'category'=>$item['category'],
+                'cod'=>$item['cod'],
+
             ]);
             return true;
         }catch(\PDOException $e){
@@ -34,10 +36,10 @@ class Contents{
     public function list(){
         $items=[];
         try{
-            $query=$this->dbh->connect()->query("SELECT * FROM contents");
+            $query= $this->dbh->connect()->query("SELECT * FROM mica.contents");
+
             while($row=$query->fetch()){
                 array_push($items,$row);
-                var_dump($row);
             }
             return $items;
         }catch(\PDOException $e){
@@ -47,7 +49,7 @@ class Contents{
 
     public function view($id){
         try{
-            $query=$this->dbh->connect()->query("SELECT * FROM contents WHERE id='$id'");
+            $query=$this->dbh->connect()->query("SELECT * FROM mica.contents WHERE id='$id'");
             $row=$query->fetch();
             return $row;
         }catch (\PDOException $e){
@@ -58,7 +60,7 @@ class Contents{
     public function getById($id){
         $item=new Contents();
         try{
-            $query=$this->dbh->connect()->prepare("SELECT * FROM contents WHERE id=:id");
+            $query=$this->dbh->connect()->prepare("SELECT * FROM mica.contents WHERE id=:id");
             $query->execute(['id'=>$id]);
 
             $row=$query->fetch();
@@ -71,7 +73,7 @@ class Contents{
     }
 
     public function update($item,$id){
-        $query=$this->dbh->connect()->prepare("UPDATE contents SET title=:title, content=:content, keywords=:keywords, description=:description, category=:category WHERE id=:id");
+        $query=$this->dbh->connect()->prepare("UPDATE mica.contents SET title=:title, content=:content, keywords=:keywords, description=:description, category=:category WHERE id=:id");
         try{
             $query->execute([
                 'title'=>$item['title'],
@@ -90,7 +92,7 @@ class Contents{
     }
 
     public function delete($id){
-        $query=$this->dbh->connect()->prepare("DELETE FROM contents WHERE id=:id");
+        $query=$this->dbh->connect()->prepare("DELETE FROM mica.contents WHERE id=:id");
 
         if($query->execute(['id'=>$id])){
             echo "Registro eliminado.";
