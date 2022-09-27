@@ -12,7 +12,7 @@ if (isset($_POST) && !empty($_POST)) {
     if (empty($error)) { 
         var_dump($contents->create($_POST));
     }
-    header("Location: http://localhost/Practica2/format/admin/index.php?class=contents&action=list");
+    header("Location: index.php?class=contents&action=list");
 }
 
 ?>
@@ -20,7 +20,7 @@ if (isset($_POST) && !empty($_POST)) {
 
 <h2 class="mt-4">Crear un nuevo contenido</h2>
 
-<form action="http://localhost/Practica2/format/admin/index.php?class=contents&action=create" method="POST">
+<form action="index.php?class=contents&action=create" method="POST">
     
     <?= $error  ?>
     
