@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+define("URL","http://server.com/pil/mica/format");
+define("NO_IMG","http://server.com/pil/mica/format/none/noimage.png");
+?>
 
 <head>
     <meta charset="utf-8">

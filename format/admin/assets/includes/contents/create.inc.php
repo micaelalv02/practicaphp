@@ -1,6 +1,6 @@
 <?php
 include("../classes/contents.php");
-include("../classes/images.php");
+//include("../classes/images.php");
 $contents = new Classes\Contents();
 $imagenes = new Classes\Images();
 
@@ -14,18 +14,19 @@ if (isset($_POST) && !empty($_POST)) {
     }
     if (empty($error)) {
         if ($contents->create($_POST)) {
-            $tmpName = $_FILES['image']['tmp_name'];
-            $finalPath = dirname(__DIR__, 2) . "/archivos/" . $_FILES['image']['name'];
-            $cod=$_POST['cod'];
-            if(!empty($_FILES['image']['name'])){
+        if (!empty($_FILES['image']['name'])) {
+            for ($i = 0; $i < count($_FILES['image']['name']); $i++) {
+                $tmpName = $_FILES['image']['tmp_name'][$i];
+                $finalPath = dirname(__DIR__, 2) . "/archivos/" . $_FILES['image']['name'][$i];
+                $cod = $_POST['cod'];
                 if (rename($tmpName, $finalPath)) {
-                    $imagenes->create($finalPath,$cod);
+                    $imagenes->create("/archivos/" . $_FILES['image']['name'][$i], $cod);
                 }
             }
         }
+        }
     }
-
-    //header("Location: index.php?class=contents&action=list");
+    header("Location: index.php?class=contents&action=list");
 }
 
 ?>
@@ -39,7 +40,7 @@ if (isset($_POST) && !empty($_POST)) {
 
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Cod</label>
-        <input type="number" name="cod" id="cod" value="<?= rand(999,999999) ?>">
+        <input type="number" name="cod" id="cod" value="<?= rand(999, 999999) ?>">
     </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Titulo</label>
@@ -63,7 +64,7 @@ if (isset($_POST) && !empty($_POST)) {
     </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Imagen</label>
-        <input type="file" accept="image" name="image" class="form-control" id="image" placeholder="Inserte una imagen.">
+        <input type="file" multiple accept="image" name="image[]" class="form-control" id="image" placeholder="Inserte una imagen.">
     </div>
 
     <div><input type="submit" value="Crear contenido"></div>

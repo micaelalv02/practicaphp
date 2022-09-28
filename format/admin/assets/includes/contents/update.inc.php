@@ -1,6 +1,7 @@
 <?php
 include("../classes/contents.php");
 $contents = new Classes\Contents();
+$imagenes = new Classes\Images();
 $id = $_GET['id'];
 // view del contenido por el id
 $item = $contents->view($id);
@@ -14,7 +15,7 @@ if (!empty($_POST)) {
     header("Location: http://server.com/pil/mica/format/admin/index.php?class=contents&action=list");
 }
 $item=$contents->getById($id);
-
+$image=$imagenes->getByCod($item['cod']);
 ?>
 
 <h2 class="mt-4">Actualizar el contenido n° <?= $id ?></h2>
@@ -49,7 +50,13 @@ $item=$contents->getById($id);
 
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Imagen</label>
-        <input type="file" name="image" class="form-control" id="image" placeholder="Inserte una imagen.">
+        <?php
+            if (!empty($image['url'])) { ?>
+                <img style="width: 100px;height:100px" src="<?= URL . "/admin/assets" . $image["url"] ?>">
+        <?php } else { ?>
+                <img style="width: 100px;height:100px" src="<?= NO_IMG ?>">
+        <?php } ?>
+        <input type="file" name="image" class="form-control" id="image">
     </div>
 
     <div><input type="submit" value="Actualizar contenido"></div>

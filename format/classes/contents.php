@@ -5,18 +5,19 @@ namespace Classes;
 use PDOException;
 
 include("database.php");
+include("images.php");
 
 class Contents{
     private $dbh;
+    private $images;
     function __construct(){
         //$dbh=parent::__construct();
         $this->dbh=new Database();
-
+        $this->images=new Images();
     }
 
     public function create($item){      
-
-$query=$this->dbh->connect()->prepare("INSERT INTO mica.contents (`title`, `content`, `keywords`, `description`, `category`,`cod`) VALUES (:title,:content,:keywords,:description,:category,:cod)");
+        $query=$this->dbh->connect()->prepare("INSERT INTO mica.contents (`title`, `content`, `keywords`, `description`, `category`,`cod`) VALUES (:title,:content,:keywords,:description,:category,:cod)");
         try{
             $query->execute([
                 'title'=>$item['title'],
@@ -39,6 +40,8 @@ $query=$this->dbh->connect()->prepare("INSERT INTO mica.contents (`title`, `cont
             $query= $this->dbh->connect()->query("SELECT * FROM mica.contents");
 
             while($row=$query->fetch()){
+                $imagesData=$this->images->getByCod($row['cod']);
+                $row['images']=$imagesData;
                 array_push($items,$row);
             }
             return $items;

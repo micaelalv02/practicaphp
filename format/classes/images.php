@@ -2,12 +2,12 @@
 
 namespace Classes;
 
+
 class Images{
     private $dbh;
     function __construct(){
         //$dbh=parent::__construct();
         $this->dbh=new Database();
-
     }
 
     public function create($url,$content){
@@ -23,6 +23,18 @@ class Images{
         }
     }
     
+    public function getByCod($cod){
+        $item=new Images();
+        try{
+            $query=$this->dbh->connect()->prepare("SELECT * FROM mica.images WHERE content=".$cod."");
+            $query->execute();
+            $row=$query->fetch();
+            return $row;
+        }catch(\PDOException $e){
+            return null;
+        }
+    }
+
     public function list($id){
         $query=$this->dbh->connect()->query("SELECT * FROM mica.images WHERE content=:id");
         try{
