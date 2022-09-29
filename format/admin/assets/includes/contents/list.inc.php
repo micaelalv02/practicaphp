@@ -19,17 +19,17 @@ $contentsList = $contents->list();
     </thead>
     <tbody>
         <?php foreach ($contentsList as $contentItem) { ?>
-
+            
             <tr>
                 <td><?= $contentItem["title"] ?></td>
                 <td><?= $contentItem["content"] ?></td>
                 <td>
                     <?php
-                    if (isset($contentItem['images']['url'])) { ?>
-                        <img style="width: 100px;height:100px" src="<?= URL . "/admin/assets" . $contentItem["images"]["url"] ?>">
+                    if (isset($contentItem['images'][0]['url'])) { ?>
+                        <img style="width: 100px;height:100px" src="<?= URL . "/admin/assets" . $contentItem["images"][0]["url"] ?>">
                     <?php } else { ?>
                         <img style="width: 100px;height:100px" src="<?= NO_IMG ?>">
-                        <?php } ?>
+                    <?php } ?>
                 </td>
                 <td>
                     <a class="buttonupdate" href="index.php?class=contents&action=update&id=<?= $contentItem['id'] ?>">
