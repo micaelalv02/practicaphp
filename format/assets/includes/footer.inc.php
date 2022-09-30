@@ -1,20 +1,5 @@
 <footer class="footer">
-    <div class="container">
-        <div class="row pt-5">
-            <div class="col-md-4 footerBox text-light">
-                <h2 class="card-title text-center titulo">Servicio 1</h2>
-                <p class="vard-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Cum, ab? Nobis assumenda earum sequi obcaecati?</p>
-            </div>
-            <div class="col-md-4 footerBox text-light">
-                <h2 class="card-title text-center titulo">Servicio 1</h2>
-                <p class="vard-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Cum, ab? Nobis assumenda earum sequi obcaecati?</p>
-            </div>
-            <div class="col-md-4 footerBox text-light">
-                <h2 class="card-title text-center titulo">Servicio 1</h2>
-            </div>
-        </div>
+    <div class="container-fluid">
         <div class="row">
             <div class="col-4 mx-auto text-center mt-5 pb-5">
                 <img src="assets/images/Imagen 1.png" style="width: 300px; height: 62px;">
@@ -22,20 +7,38 @@
 
             <div class="col 4 mx-auto text-center mt-5 pb-5 text-light">
                 <p class="card-title text-center titulo">CONTACTANOS</p>
-                <a href="https://google.com.ar">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
+                <div>
+                    <a class="nospace medialink" class="nospace" href="mailto:info@estudiorochayasoc.com.ar ">
+                        <i class="fa-regular fa-envelope medialink"></i>
+                        info@estudiorochayasoc.com.ar
+                    </a>
+                </div>
+                <div>
+                    <a class="nospace medialink" href="tel:+54 (03564) 426508">
+                        <i class="fa-solid fa-phone medialink"></i>
+                        +54 (03564) 426508 / 437939
+                    </a>
+                </div>
+                <div>
+                    <a class="nospace medialink" href="https://g.page/estudiorochayasoc?share">
+                        <i class="fa-sharp fa-solid fa-location-dot medialink"></i>
+                        Moreno 357 - San Francisco - Córdoba - Argentina
+                    </a>
+                </div>
             </div>
 
             <div class="col 4 mx-auto text-center mt-5 pb-5">
-                <a href="https://google.com.ar">
-                    <i class="fa-brands fa-facebook"></i>
+                <a class="nospace" href="https://facebook.com/estudiorochayasoc/ ">
+                    <i class="fa-brands fa-facebook-f social-icon"></i>
                 </a>
-                <a href="https://google.com.ar">
-                    <i class="fa-solid fa-envelope"></i>
+                <a class="nospace" href="https://twitter.com/estudiorocha?lang=es">
+                    <i class="fa-brands fa-twitter social-icon"></i>
                 </a>
-                <a href="https://google.com.ar">
-                    <i class="fa-sharp fa-solid fa-phone"></i>
+                <a class="nospace" href="https://www.instagram.com/estudiorochayasoc/">
+                    <i class="fa-brands fa-instagram social-icon"></i>
+                </a>
+                <a class="nospace" href="https://www.youtube.com/user/estudiorocha">
+                    <i class="fa-brands fa-youtube social-icon"></i>
                 </a>
             </div>
         </div>

@@ -1,42 +1,62 @@
-.nav-container{
+.nav-container {
     background-color: black;
 }
 
-.menu{
+.menu {
     background-color: #E74F11;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
 }
 
-.horizontal-container{
+.horizontal-container {
     background-color: #E74F11;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.titulo{
+.titulo {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
 }
 
-.texto{
+.texto {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.tarjeta{
+.tarjeta {
     background-color: #E74F11;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.footer{
+.footer {
     background-color: #000000;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-style: white;
 }
 
-.footerBox .card-title{
-    font-size:26px;
+.footerBox .card-title {
+    font-size: 20px;
 }
 
 .footerBox p{
-    font-size:16px;
+    font-size: 16px;
+
+}
+
+.medialink{
+    font-size: medium;
+    color: white;
+}
+
+.social-icon {
+    font-size: medium;
+    color: grey;
+}
+
+.nospace{
+    text-decoration: none;
+    padding-right: 5px;
+}
+
+.text-center{
+    text-align:center;
 }

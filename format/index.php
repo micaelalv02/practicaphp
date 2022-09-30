@@ -1,7 +1,14 @@
 <?php
 include("assets/includes/header.inc.php");
 include("assets/includes/nav.inc.php");
+include("classes/contents.php");
+//use Classes\Contents;
+$contents = new Classes\Contents();
+$imagenes = new Classes\Images();
+$contentsList = $contents->list();
+
 ?>
+
 
 <section>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -31,56 +38,54 @@ include("assets/includes/nav.inc.php");
     <div class="container horizontal-container">
         <div class="row">
             <div class="col-5 p-0">
-                <img src="assets/images/recruiting.jpg" style="object-fit:cover;width:100%;height:100%;">
+                <img src="<?= URL . "/admin/assets" . $contentsList[0]['images'][0]['url'] ?>" style="object-fit:cover;width:100%;height:100%;">
             </div>
             <div class="col-7 p-5 ms-0">
-                <h1 class="text-white titulo">Recruiting</h1>
+                <h1 class="text-white titulo"><?= $contentsList[0]['title'] ?></h1>
                 <p class="text-white texto">
-                Reclutamos el activo perfecto para que logres tener un equipo de alto rendimiento: 
-                el Servicio de Recruiting es una excelente opción para empresas que tienen su propio Departamento de Recursos Humanos 
-                pero buscan en un equipo de profesionales externos como el nuestro la búsqueda del talento especializado para ocupar 
-                una posición específica en la empresa.
+                    <?= $contentsList[0]['content'] ?>
                 </p>
             </div>
         </div>
     </div>
 </section>
 
+
 <section class="m-5">
+
     <div class="container">
+
         <div class="row">
-            <div class="col 4 p-0">
-                <div class="card mt-5 mx-auto text-center" style="width: 100%;">
-                    <img class="img-card-top" src="assets/images/e-commerce.jpg" style="object-fit: cover; width: 100%; height: 300px;">
-                    <div class="tarjeta card-body">
-                        <h2 class="card-title text-white titulo" style="width: 300px;">E-commerce</h2>
-                        <p class="vard-text text-white">Con más de 175 tiendas online desarrolladas en este tiempo, 
-                            tenemos un expertise único en creación de herramientas de venta online para diferentes rubros. 
-                            Esta experiencia nos permite ser más veloces en la entrega y puesta en marcha de la plataforma y 
-                            brindarle a nuestros clientes la asesoría necesaria para que su tienda online sea un éxito.</p>
+            <?php foreach ($contentsList as $item) { ?>
+                <!-- item -->
+                <div class="col-4 p-0">
+                    <div class="card mt-5 mx-auto " style="width: 100%;">
+                        <?php if (!empty($item['images'][0]['url'])) { ?>
+                            <img class="img-card-top" src="<?= URL . "/admin/assets" . $item['images'][0]['url'] ?>" style="object-fit: cover; width: 100%; height: 300px;">
+                        <?php } else { ?>
+                            <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 300px;">
+                        <?php } ?>
+                        <div class="tarjeta card-body">
+                            <h2 class="card-title text-white titulo" style="width: 300px;"><?= $item['title'] ?></h2>
+                            <p class="vard-text text-white">
+                                <?= $item['content']?>
+                            </p>
+                        </div>
                     </div>
                 </div>
+            <?php } ?>
+        </div>
+
+        <div class="row pt-5">
+            <div class="col-md-12 footerBox">
+                <h2 class="card-title text-center titulo">Somos una empresa certificada en:</h2>
+                <p class="vard-text"></p>
             </div>
-            <div class="col 4">
-                <div class="card mt-5 mx-auto text-center" style="width: 100%;">
-                    <img class="img-card-top" src="assets/images/redes-sociales.jpg" style="object-fit: cover; width: 100%; height: 300px;">
-                    <div class="tarjeta card-body">
-                        <h2 class="card-title text-white titulo" style="width: 300px;">Redes Sociales</h2>
-                        <p class="vard-text text-white">Desarrollo de campañas y creación de contenido digital para redes sociales, llevamos adelante campañas de marketing de performance, buscando obtención de leads, contactos directos a whatsapp y generación de clientes potenciales como también la creación de comunidades en las redes sociales más importantes.</p>
-                    </div>
-                </div>
+            <div class="col-md-6 footerBox  text-light text-center">
+                <img src="assets/images/mercado-libre.jpg" style="width: 70%;height: auto;">
             </div>
-            <div class="col 4 p-0">
-                <div class="card mt-5 mx-auto text-center" style="width:100%;">
-                    <img class="img-card-top" src="assets/images/marketing-operativo.jpg" style="object-fit: cover; width: 100%; height: 300px;">
-                    <div class="tarjeta card-body text-white">
-                        <h2 class="card-title text-white titulo" style="width: 100%;">Marketing Operativo</h2>
-                        <p class="vard-text">Nuestro Departamento de Marketing & Comunicación genera e implementa acciones de 
-                            marketing operativo enfocado en la venta y comercialización de productos de nuestros clientes bajo 
-                            las decisiones tomadas gracias al Marketing Estratégico.
-                            <br>Utilizamos técnicas de neuromarketing que nos permiten aumentar nuestro nivel de efectividad.</p>
-                    </div>
-                </div>
+            <div class="col-md-6 footerBox text-light text-center">
+                <img src="assets/images/google-ads.jpg" style="width: 70%;height: auto;">
             </div>
         </div>
 </section>
