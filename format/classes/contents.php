@@ -4,7 +4,6 @@ namespace Classes;
 
 use PDOException;
 
-include("database.php");
 include("images.php");
 
 class Contents{
@@ -54,6 +53,8 @@ class Contents{
         try{
             $query=$this->dbh->connect()->query("SELECT * FROM mica.contents WHERE id='$id'");
             $row=$query->fetch();
+            $imagesData=$this->images->getByCod($row['cod']);
+            $row['images']=$imagesData;
             return $row;
         }catch (\PDOException $e){
             return[];
@@ -107,5 +108,3 @@ class Contents{
 
 
 }
-
-?>

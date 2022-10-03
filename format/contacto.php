@@ -3,8 +3,12 @@
 include("classes/contact.php");
 include("assets/includes/header.inc.php");
 include("assets/includes/nav.inc.php");
+include("classes/contents.php");
+$contents = new Classes\Contents();
+$imagenes = new Classes\Images();
+$contentsList = $contents->view($_GET['id']);
 
-$contact= new Classes\Contact();
+$contact = new Classes\Contact();
 
 $error = '';
 
@@ -24,10 +28,21 @@ if (isset($_POST) && !empty($_POST)) {
 ?>
 
 <section class="m-5">
-    <h1 class="text-center">Contacto</h1>
-    <img src="assets/images/e-commerce.jpg" style="object-fit: cover; width: 100%; height: 600px;">
+    <h1 class="text-center"><?= $contentsList['title'] ?>
+        <!-- Contacto -->
+    </h1>
 
-    <h2 class="mt-4">Completa el siguiente formulario:</h2>
+    <?php if (!empty($contentsList['images'][0]['url'])) { ?>
+        <img src="<?= URL . "/admin/assets" . $contentsList['images'][0]['url'] ?>" style="object-fit: cover; width: 100%; height: 600px;">
+    <?php } else { ?>
+        <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
+    <?php } ?>
+
+    <h2 class="mt-4"><?= $contentsList['content'] ?>
+        <!--Completa el siguiente formulario:-->
+    </h2>
+
+
     <form enctype='multipart/form-data' action="contacto.php" method="POST">
 
         <?= $error ?>

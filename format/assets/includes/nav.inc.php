@@ -8,10 +8,10 @@
 
     <section class="menu">
         <div class="mt-0 mx-auto text-center" style="width: 100%;">
-            <a href="index.php" class="btn text-white menu">INICIO</a>
-            <a href="sobre-nosotros.php" class="btn text-white menu">SOBRE NOSOTROS</a>
-            <a href="servicios.php" class="btn text-white menu">SERVICIOS</a>
-            <a href="ubicacion.php" class="btn text-white menu">DÓNDE ENCONTRARNOS</a>
-            <a href="contacto.php" class="btn text-white menu">CONTACTO</a>
+            <a href="index.php?" class="btn text-white menu">INICIO</a>
+            <a href="sobre-nosotros.php?id=71" class="btn text-white menu">SOBRE NOSOTROS</a>
+            <a href="servicios.php?id=72" class="btn text-white menu">SERVICIOS</a>
+            <a href="ubicacion.php?id=75" class="btn text-white menu">DÓNDE ENCONTRARNOS</a>
+            <a href="contacto.php?id=78" class="btn text-white menu">CONTACTO</a>
         </div>
     </section>

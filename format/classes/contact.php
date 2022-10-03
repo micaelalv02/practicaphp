@@ -4,8 +4,6 @@ namespace Classes;
 
 use PDOException;
 
-include("database.php");
-
 class Contact{
     private $dbh;
     function __construct(){

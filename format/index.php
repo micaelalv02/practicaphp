@@ -6,23 +6,36 @@ include("classes/contents.php");
 $contents = new Classes\Contents();
 $imagenes = new Classes\Images();
 $contentsList = $contents->list();
-
 ?>
 
 
+<!-- NO ANDA EL CARRUSEL -->
 <section>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="assets/images/Imagen 2.png" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-                <img src="assets/images/Imagen 5.png" class="d-block w-100" style="width:100%; height: 1033px;  object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-                <img src="assets/images/Imagen 6.png" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
+        <div class="row">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <?php if (!empty($contentsList['images'][0]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList['images'][0]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
+                    <?php } else { ?>
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
+                    <?php } ?>
+                </div>
+
+                <div class="carousel-item">
+                <?php if (!empty($contentsList['images'][1]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList['images'][1]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
+                    <?php } else { ?>
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
+                    <?php } ?>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="assets/images/Imagen 6.png" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
+                </div>
             </div>
         </div>
+
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
@@ -52,14 +65,14 @@ $contentsList = $contents->list();
 
 
 <section class="m-5">
-
     <div class="container">
 
         <div class="row">
+            <!--AGREGA CARDS POR CADA CONTENT DEL ADMIN-->
             <?php foreach ($contentsList as $item) { ?>
                 <!-- item -->
                 <div class="col-4 p-0">
-                    <div class="card mt-5 mx-auto " style="width: 100%;">
+                    <div class="card mt-5 mx-auto text-center" style="width: 100%;">
                         <?php if (!empty($item['images'][0]['url'])) { ?>
                             <img class="img-card-top" src="<?= URL . "/admin/assets" . $item['images'][0]['url'] ?>" style="object-fit: cover; width: 100%; height: 300px;">
                         <?php } else { ?>
@@ -68,7 +81,7 @@ $contentsList = $contents->list();
                         <div class="tarjeta card-body">
                             <h2 class="card-title text-white titulo" style="width: 300px;"><?= $item['title'] ?></h2>
                             <p class="vard-text text-white">
-                                <?= $item['content']?>
+                                <?= $item['content'] ?>
                             </p>
                         </div>
                     </div>

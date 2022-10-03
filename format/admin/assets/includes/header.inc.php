@@ -3,6 +3,7 @@
 <?php
 define("URL","http://server.com/pil/mica/format");
 define("NO_IMG","http://server.com/pil/mica/format/none/noimage.png");
+include( dirname(__DIR__, 3) . "/classes/database.php");
 ?>
 
 <head>

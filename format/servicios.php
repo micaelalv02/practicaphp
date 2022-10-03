@@ -1,30 +1,51 @@
 <?php
 include("assets/includes/header.inc.php");
 include("assets/includes/nav.inc.php");
+include("classes/contents.php");
+$contents = new Classes\Contents();
+$imagenes = new Classes\Images();
+$contentsList = $contents->view($_GET['id']);
 ?>
 
 <section>
-    <h1 class="mt-5 mx-auto text-center" style="width: 100%;">Servicios</h1> 
+    <h1 class="mt-5 mx-auto text-center" style="width: 100%;"><?= $contentsList['title'] ?></h1>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <img src="assets/images/recruiting.jpg" class="d-block w-100" style="width: 100%; height: 800px; object-fit: cover;">
+        <div class="row">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <?php if (!empty($contentsList['images'][0]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList['images'][0]['url'] ?>" class="d-block w-100" style="object-fit: cover; width: 100%; height: 800px; ">
+                    <?php } else { ?>
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
+                    <?php } ?>
+                </div>
+
+                <div class="carousel-item">
+                    <?php if (!empty($contentsList['images'][1]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList['images'][1]['url'] ?>" class="d-block w-100" style="object-fit: cover; width: 100%; height: 800px; ">
+                    <?php } else { ?>
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
+                    <?php } ?>
+                </div>
+
+                <div class="carousel-item">
+                    <?php if (!empty($contentsList['images'][2]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList['images'][2]['url'] ?>" class="d-block w-100" style="object-fit: cover; width: 100%; height: 800px; ">
+                    <?php } else { ?>
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
+                    <?php } ?>
+                </div>
+
             </div>
-            <div class="carousel-item">
-            <img src="assets/images/mercadolibre.jpg" class="d-block w-100" style="width:100%; height: 800px;  object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-            <img src="assets/images/publicidad-digital.jpg" class="d-block w-100" style="width:100%; height: 800px; object-fit: cover;">
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-        </button>
     </div>
 </section>
 
