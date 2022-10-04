@@ -47,7 +47,7 @@ $image=$imagenes->getByCod($item['cod']);
     <div class="mb-3">
         <!-- VER PARA AGREGAR VARIOS CONTENIDOS (con la misma logica de update images)-->
         <label for="exampleFormControlTextarea1" class="form-label">Contenido</label>
-        <textarea class="form-control" name="content[]" id="exampleFormControlTextarea1" rows="3"><?= $item['content'] ?></textarea>
+        <textarea class="form-control" name="content" id="content" rows="3"><?= $item['content'] ?></textarea>
     <!-- AGREGUÉ [] EN name=content-->
     </div>
 
@@ -84,3 +84,13 @@ $image=$imagenes->getByCod($item['cod']);
 
     <div><input type="submit" value="Actualizar contenido"></div>
 </form>
+
+<script src="<?= URL ?>/admin/ckeditor/ckeditor.js"></script>
+
+<script>
+     ClassicEditor
+        .create( document.querySelector( '#content' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

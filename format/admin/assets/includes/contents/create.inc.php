@@ -14,16 +14,16 @@ if (isset($_POST) && !empty($_POST)) {
     }
     if (empty($error)) {
         if ($contents->create($_POST)) {
-        if (!empty($_FILES['image']['name'])) {
-            for ($i = 0; $i < count($_FILES['image']['name']); $i++) {
-                $tmpName = $_FILES['image']['tmp_name'][$i];
-                $finalPath = dirname(__DIR__, 2) . "/archivos/" . $_FILES['image']['name'][$i];
-                $cod = $_POST['cod'];
-                if (rename($tmpName, $finalPath)) {
-                    $imagenes->create("/archivos/" . $_FILES['image']['name'][$i], $cod);
+            if (!empty($_FILES['image']['name'])) {
+                for ($i = 0; $i < count($_FILES['image']['name']); $i++) {
+                    $tmpName = $_FILES['image']['tmp_name'][$i];
+                    $finalPath = dirname(__DIR__, 2) . "/archivos/" . $_FILES['image']['name'][$i];
+                    $cod = $_POST['cod'];
+                    if (rename($tmpName, $finalPath)) {
+                        $imagenes->create("/archivos/" . $_FILES['image']['name'][$i], $cod);
+                    }
                 }
             }
-        }
         }
     }
     header("Location: index.php?class=contents&action=list");
@@ -42,26 +42,32 @@ if (isset($_POST) && !empty($_POST)) {
         <label for="exampleFormControlInput1" class="form-label">Cod</label>
         <input type="number" name="cod" id="cod" value="<?= rand(999, 999999) ?>">
     </div>
+
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Titulo</label>
         <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="Inserte el título.">
     </div>
+
     <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Contenido</label>
-        <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3" placeholder="Inserte el contenido."></textarea>
+        <textarea class="form-control" name="content" id="content" rows="3" placeholder="Inserte el contenido."></textarea>
     </div>
+
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Keywords</label>
         <input type="text" name="keywords" class="form-control" id="exampleFormControlInput1" placeholder="Inserte una keyword.">
     </div>
+
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Descripcion</label>
         <input type="text" name="description" class="form-control" id="exampleFormControlInput1" placeholder="Inserte una descripción.">
     </div>
+
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Categoria</label>
         <input type="text" name="category" class="form-control" id="exampleFormControlInput1" placeholder="Inserte una categoría.">
     </div>
+
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Imagen</label>
         <input type="file" multiple accept="image" name="image[]" class="form-control" id="image" placeholder="Inserte una imagen.">
@@ -69,3 +75,13 @@ if (isset($_POST) && !empty($_POST)) {
 
     <div><input type="submit" value="Crear contenido"></div>
 </form>
+
+<script src="<?= URL ?>/admin/ckeditor/ckeditor.js"></script>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#content'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>

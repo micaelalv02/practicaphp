@@ -18,15 +18,15 @@ $contentsList = $contents->list();
                     <?php if (!empty($contentsList['images'][0]['url'])) { ?>
                         <img src="<?= URL . "/admin/assets" . $contentsList['images'][0]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
                     <?php } else { ?>
-                        <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="width:100%; height: 1033px; object-fit: cover;">
                     <?php } ?>
                 </div>
 
-                <div class="carousel-item">
-                <?php if (!empty($contentsList['images'][1]['url'])) { ?>
+                <div class="carousel-item ">
+                    <?php if (!empty($contentsList['images'][1]['url'])) { ?>
                         <img src="<?= URL . "/admin/assets" . $contentsList['images'][1]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
                     <?php } else { ?>
-                        <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="width:100%; height: 1033px; object-fit: cover;">
                     <?php } ?>
                 </div>
 
@@ -50,13 +50,17 @@ $contentsList = $contents->list();
 <section class="m-5">
     <div class="container horizontal-container">
         <div class="row">
-            <div class="col-5 p-0">
-                <img src="<?= URL . "/admin/assets" . $contentsList[0]['images'][0]['url'] ?>" style="object-fit:cover;width:100%;height:100%;">
+            <div class="col-5 p-0 text-center">
+                <?php if (!empty($item['images'][0]['url'])) { ?>
+                            <img class="img-card-top" src="<?= URL . "/admin/assets" . $item['images'][0]['url'] ?>" style="object-fit: cover; width: 300px; height: 300px;">
+                        <?php } else { ?>
+                            <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 300px; height: 300px;">
+                        <?php } ?>
             </div>
             <div class="col-7 p-5 ms-0">
-                <h1 class="text-white titulo"><?= $contentsList[0]['title'] ?></h1>
+                <h1 class="text-white titulo"><?= $contentsList[4]['title'] ?></h1><!-- cambiar-->
                 <p class="text-white texto">
-                    <?= $contentsList[0]['content'] ?>
+                    <?= $contentsList[4]['content'] ?><!-- cambiar-->
                 </p>
             </div>
         </div>
@@ -66,7 +70,7 @@ $contentsList = $contents->list();
 
 <section class="m-5">
     <div class="container">
-
+<!--CAROUSEL OWL-->
         <div class="row">
             <!--AGREGA CARDS POR CADA CONTENT DEL ADMIN-->
             <?php foreach ($contentsList as $item) { ?>
