@@ -52,15 +52,16 @@ $contentsList = $contents->list();
         <div class="row">
             <div class="col-5 p-0 text-center">
                 <?php if (!empty($item['images'][0]['url'])) { ?>
-                            <img class="img-card-top" src="<?= URL . "/admin/assets" . $item['images'][0]['url'] ?>" style="object-fit: cover; width: 300px; height: 300px;">
-                        <?php } else { ?>
-                            <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 300px; height: 300px;">
-                        <?php } ?>
+                    <img class="img-card-top" src="<?= URL . "/admin/assets" . $item['images'][0]['url'] ?>" style="object-fit: cover; width: 300px; height: 300px;">
+                <?php } else { ?>
+                    <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 300px; height: 300px;">
+                <?php } ?>
             </div>
             <div class="col-7 p-5 ms-0">
                 <h1 class="text-white titulo"><?= $contentsList[4]['title'] ?></h1><!-- cambiar-->
                 <p class="text-white texto">
-                    <?= $contentsList[4]['content'] ?><!-- cambiar-->
+                    <?= $contentsList[4]['content'] ?>
+                    <!-- cambiar-->
                 </p>
             </div>
         </div>
@@ -70,21 +71,21 @@ $contentsList = $contents->list();
 
 <section class="m-5">
     <div class="container">
-<!--CAROUSEL OWL-->
-        <div class="row">
+        <!--CAROUSEL OWL-->
+        <div class="owl-carousel">
             <!--AGREGA CARDS POR CADA CONTENT DEL ADMIN-->
             <?php foreach ($contentsList as $item) { ?>
                 <!-- item -->
-                <div class="col-4 p-0">
-                    <div class="card mt-5 mx-auto text-center" style="width: 100%;">
+                <div class="p-0">
+                    <div class="card mt-5 mx-auto text-center" style="width: 100%; height: 500px">
                         <?php if (!empty($item['images'][0]['url'])) { ?>
                             <img class="img-card-top" src="<?= URL . "/admin/assets" . $item['images'][0]['url'] ?>" style="object-fit: cover; width: 100%; height: 300px;">
                         <?php } else { ?>
                             <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 300px;">
                         <?php } ?>
-                        <div class="tarjeta card-body">
-                            <h2 class="card-title text-white titulo" style="width: 300px;"><?= $item['title'] ?></h2>
-                            <p class="vard-text text-white">
+                        <div class="tarjeta card-body owltitle">
+                            <h2 class="card-title titulo p-0" style="width: 300px;"><?= $item['title'] ?></h2>
+                            <p class="vard-text owltitle text-center">
                                 <?= $item['content'] ?>
                             </p>
                         </div>
@@ -92,21 +93,50 @@ $contentsList = $contents->list();
                 </div>
             <?php } ?>
         </div>
+    </div>
 
-        <div class="row pt-5">
-            <div class="col-md-12 footerBox">
-                <h2 class="card-title text-center titulo">Somos una empresa certificada en:</h2>
-                <p class="vard-text"></p>
-            </div>
-            <div class="col-md-6 footerBox  text-light text-center">
-                <img src="assets/images/mercado-libre.jpg" style="width: 70%;height: auto;">
-            </div>
-            <div class="col-md-6 footerBox text-light text-center">
-                <img src="assets/images/google-ads.jpg" style="width: 70%;height: auto;">
-            </div>
+    <div class="row pt-5">
+        <div class="col-md-12 footerBox">
+            <h2 class="card-title text-center titulo">Somos una empresa certificada en:</h2>
+            <p class="vard-text"></p>
         </div>
+        <div class="col-md-6 footerBox  text-light text-center">
+            <img src="assets/images/mercado-libre.jpg" style="width: 70%;height: auto;">
+        </div>
+        <div class="col-md-6 footerBox text-light text-center">
+            <img src="assets/images/google-ads.jpg" style="width: 70%;height: auto;">
+        </div>
+    </div>
 </section>
 
 <?php
 include("assets/includes/footer.inc.php");
 ?>
+
+<script>
+    $(document).ready(function() {
+        $(".owl-carousel").owlCarousel({
+            loop: true,
+            margin: 5,
+            responsiveClass: true,
+            nav:false,
+            autoplay:true,
+            autoplayTimeout:5000,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                990: {
+                    items: 3,
+                },
+            }
+        });
+        $('.play').on('click',function(){
+            owl.trigger('play.owl.autoplay',[1000])
+        })
+        $('.stop').on('click',function(){
+            owl.trigger('stop.owl.autoplay')
+        })
+    });
+</script>
