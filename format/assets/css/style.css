@@ -17,6 +17,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     text-align: center;
+    color: white;
 }
 
 .owltitle{
@@ -28,7 +29,9 @@
 }
 
 .texto {
+    text-align: center !important;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:white;
 }
 
 .tarjeta {

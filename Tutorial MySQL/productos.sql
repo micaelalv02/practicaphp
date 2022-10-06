@@ -19,5 +19,12 @@ VALUES
     
 SELECT * FROM product;
 SELECT u.id,u.email,p.name FROM user u LEFT JOIN product p ON u.id=p.created_by;
+SELECT u.id,u.email,p.name FROM user u RIGHT JOIN product p ON u.id=p.created_by;
+SELECT u.id,u.email,p.name FROM user u INNER JOIN product p ON u.id=p.created_by;
 
+SELECT u.id,u.email,p.name FROM user u CROSS JOIN product p;
+
+SELECT COUNT(id), marca FROM product GROUP BY marca;
+SELECT COUNT(p.id), u.name FROM product p LEFT JOIN USER u ON u.id=p.created_by GROUP BY p.created_by
+HAVING COUNT(p.id) >=2; 
 

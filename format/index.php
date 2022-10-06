@@ -15,27 +15,38 @@ $contentsList = $contents->list();
         <div class="row">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <?php if (!empty($contentsList['images'][0]['url'])) { ?>
-                        <img src="<?= URL . "/admin/assets" . $contentsList['images'][0]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
+                    <?php if (!empty($contentsList[5]['images'][3]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList[5]['images'][3]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
                     <?php } else { ?>
                         <img class="img-card-top" src="<?= NO_IMG ?>" style="width:100%; height: 1033px; object-fit: cover;">
                     <?php } ?>
                 </div>
 
                 <div class="carousel-item ">
-                    <?php if (!empty($contentsList['images'][1]['url'])) { ?>
-                        <img src="<?= URL . "/admin/assets" . $contentsList['images'][1]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
+                    <?php if (!empty($contentsList[5]['images'][1]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList[5]['images'][1]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
                     <?php } else { ?>
                         <img class="img-card-top" src="<?= NO_IMG ?>" style="width:100%; height: 1033px; object-fit: cover;">
                     <?php } ?>
                 </div>
 
-                <div class="carousel-item">
-                    <img src="assets/images/Imagen 6.png" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
+                <div class="carousel-item ">
+                    <?php if (!empty($contentsList[5]['images'][2]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList[5]['images'][2]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
+                    <?php } else { ?>
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="width:100%; height: 1033px; object-fit: cover;">
+                    <?php } ?>
+                </div>
+
+                <div class="carousel-item ">
+                    <?php if (!empty($contentsList[5]['images'][0]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList[5]['images'][0]['url'] ?>" class="d-block w-100" style="width:100%; height: 1033px; object-fit: cover;">
+                    <?php } else { ?>
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="width:100%; height: 1033px; object-fit: cover;">
+                    <?php } ?>
                 </div>
             </div>
         </div>
-
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
@@ -51,18 +62,20 @@ $contentsList = $contents->list();
     <div class="container horizontal-container">
         <div class="row">
             <div class="col-5 p-0 text-center">
-                <?php if (!empty($item['images'][0]['url'])) { ?>
-                    <img class="img-card-top" src="<?= URL . "/admin/assets" . $item['images'][0]['url'] ?>" style="object-fit: cover; width: 300px; height: 300px;">
+                <?php
+                if (!empty($contentsList[4]['images'][0]['url'])) {
+                ?>
+
+                    <img class="img-card-top" src="<?= URL . "/admin/assets" . $contentsList[4]['images'][0]['url'] ?>" style="object-fit: cover; width: 500px; height: 500px;">
                 <?php } else { ?>
                     <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 300px; height: 300px;">
                 <?php } ?>
             </div>
-            <div class="col-7 p-5 ms-0">
-                <h1 class="text-white titulo"><?= $contentsList[4]['title'] ?></h1><!-- cambiar-->
-                <p class="text-white texto">
+            <div class="col-7 ps-5 pt-5 ms-0">
+                <h1 class="titulo text-center"><?= $contentsList[4]['title'] ?></h1>
+                <div class="pt-5 texto text-center">
                     <?= $contentsList[4]['content'] ?>
-                    <!-- cambiar-->
-                </p>
+                </div>
             </div>
         </div>
     </div>
@@ -119,9 +132,9 @@ include("assets/includes/footer.inc.php");
             loop: true,
             margin: 5,
             responsiveClass: true,
-            nav:false,
-            autoplay:true,
-            autoplayTimeout:5000,
+            nav: false,
+            autoplay: true,
+            autoplayTimeout: 5000,
             autoplayHoverPause: true,
             responsive: {
                 0: {
@@ -132,10 +145,10 @@ include("assets/includes/footer.inc.php");
                 },
             }
         });
-        $('.play').on('click',function(){
-            owl.trigger('play.owl.autoplay',[1000])
+        $('.play').on('click', function() {
+            owl.trigger('play.owl.autoplay', [1000])
         })
-        $('.stop').on('click',function(){
+        $('.stop').on('click', function() {
             owl.trigger('stop.owl.autoplay')
         })
     });

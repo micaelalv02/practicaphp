@@ -35,6 +35,13 @@ $contentsList = $contents->view($_GET['id']);
                         <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
                     <?php } ?>
                 </div>
+                <div class="carousel-item">
+                    <?php if (!empty($contentsList['images'][3]['url'])) { ?>
+                        <img src="<?= URL . "/admin/assets" . $contentsList['images'][3]['url'] ?>" class="d-block w-100" style="object-fit: cover; width: 100%; height: 800px; ">
+                    <?php } else { ?>
+                        <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 800px;">
+                    <?php } ?>
+                </div>
 
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

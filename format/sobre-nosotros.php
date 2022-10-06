@@ -28,7 +28,7 @@ $contentsList = $contents->view($_GET['id']);
             con un modelo de trabajo único y alta tasa de éxito.-->
         </h5><br>
         <?php if (!empty($contentsList['images'][1]['url'])) { ?>
-            <img src="<?= URL . "/admin/assets" . $contentsList['images'][1]['url'] ?>" style="object-fit: cover; width: 100%; height:600px;">
+            <img src="<?= URL . "/admin/assets" . $contentsList['images'][1]['url'] ?>" style="object-fit: cover; width: 100%; height:100%;">
         <?php } else { ?>
             <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 100%;">
         <?php } ?>
@@ -46,7 +46,7 @@ $contentsList = $contents->view($_GET['id']);
         <br>
 
         <?php if (!empty($contentsList['images'][2]['url'])) { ?>
-            <img src="<?= URL . "/admin/assets" . $contentsList['images'][2]['url'] ?>" style="object-fit: cover; width: 100%; height:600px;">
+            <img src="<?= URL . "/admin/assets" . $contentsList['images'][2]['url'] ?>" style="object-fit: cover; width: 100%; height:100%;">
         <?php } else { ?>
             <img class="img-card-top" src="<?= NO_IMG ?>" style="object-fit: cover; width: 100%; height: 100%;">
         <?php } ?>
